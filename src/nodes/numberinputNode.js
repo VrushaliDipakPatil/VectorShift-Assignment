@@ -1,0 +1,10 @@
+
+import { BaseNode } from './BaseNode';
+export const NumberInputNode = (props) => (
+  <BaseNode
+    {...props}
+    label="Number Input"
+    fields={[{ label: 'Value', field: 'numberValue', type: 'text' }]}
+    handles={[{ id: 'value', type: 'source', position: 'right' }]}
+  />
+);
