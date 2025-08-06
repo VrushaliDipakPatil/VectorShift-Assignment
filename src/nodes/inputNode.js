@@ -7,8 +7,8 @@ export const InputNode = (props) => (
     {...props}
     label="Input"
     fields={[
-      { label: 'Name', field: 'inputName', type: 'text' },
-      { label: 'Type', field: 'inputType', type: 'select', options: ['Text', 'File'] },
+      { label: 'Value', field: 'inputValue', type: 'text' },
+      { label: 'Variable', field: 'inputVar', type: 'text' }, // <-- Allow user-defined variable name
     ]}
     handles={[
       { id: 'value', type: 'source', position: 'right' },
