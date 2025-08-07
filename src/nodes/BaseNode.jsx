@@ -25,6 +25,7 @@ export const BaseNode = ({
 }) => {
   const [localData, setLocalData] = useState(data || {});
 
+  // Sync localData back to the parent data prop
   useEffect(() => {
     if (data) {
       Object.assign(data, localData);
@@ -80,18 +81,18 @@ export const BaseNode = ({
         </Box>
       ))}
 
-      {handles.map((handle) => (
+      {handles.map(({ id: handleId, type, position, style }) => (
         <Handle
-          key={handle.id}
-          type={handle.type}
-          position={handlePositions[handle.position]}
-          id={`${id}-${handle.id}`}
+          key={handleId}
+          type={type}
+          position={handlePositions[position]}
+          id={`${id}-${handleId}`}
           style={{
             background: '#1976d2',
             width: 10,
             height: 10,
             borderRadius: '50%',
-            ...handle.style,
+            ...style,
           }}
         />
       ))}

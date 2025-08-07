@@ -4,8 +4,8 @@ import {
   Paper,
   Typography,
   TextareaAutosize,
-  Box,
 } from '@mui/material';
+import { useStore } from '../store';
 
 const extractVariables = (text) => {
   const regex = /{{\s*([a-zA-Z_$][a-zA-Z0-9_$]*)\s*}}/g;
@@ -20,10 +20,14 @@ const extractVariables = (text) => {
 export const TextNode = ({ id, data, selected }) => {
   const [text, setText] = useState(data.text || '');
   const [variables, setVariables] = useState([]);
+  const updateNodeField = useStore((state) => state.updateNodeField);
 
   useEffect(() => {
-    data.text = text; // Keep syncing with parent node data
-    setVariables(extractVariables(text));
+    const extracted = extractVariables(text);
+    setVariables(extracted);
+
+    updateNodeField(id, 'text', text);
+    updateNodeField(id, 'variables', extracted);
   }, [text]);
 
   return (
@@ -59,7 +63,6 @@ export const TextNode = ({ id, data, selected }) => {
         placeholder="Type here (e.g. Hello {{name}})"
       />
 
-      {/* Right-side output handle */}
       <Handle
         type="source"
         position={Position.Right}
@@ -72,7 +75,6 @@ export const TextNode = ({ id, data, selected }) => {
         }}
       />
 
-      {/* Dynamic input handles for variables */}
       {variables.map((variable, idx) => (
         <Handle
           key={variable}

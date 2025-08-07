@@ -1,4 +1,4 @@
-// src/nodes/numberInputNode.js
+// src/nodes/NumberInputNode.js
 
 import { BaseNode } from './BaseNode';
 
@@ -8,7 +8,7 @@ export const NumberInputNode = (props) => (
     label="Number Input"
     fields={[
       { label: 'Value', field: 'numberValue', type: 'text' },
-      { label: 'Variable', field: 'inputVar', type: 'text' }, // <-- Same as InputNode
+      { label: 'Variable', field: 'inputVar', type: 'text' },
     ]}
     handles={[
       { id: 'value', type: 'source', position: 'right' },
